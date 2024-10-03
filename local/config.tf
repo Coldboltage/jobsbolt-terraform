@@ -18,7 +18,3 @@ resource "kubernetes_config_map" "jobsbolt_config" {
     RABBITMQ_USERNAME = "guest"
   }
 }
-
-# output "jobsbolt_config_name" {
-#   value = kubernetes_config_map.jobsbolt-config.metadata[0].name
-# }

@@ -4,19 +4,19 @@ resource "kubernetes_config_map" "jobsbolt_api_config" {
   }
 
   data = {
-    TYPEORM_TYPE = "postgres"
-    TYPEORM_HOST = "jobsbolt-postgres-service.default.svc.cluster.local"
-    # TYPEORM_HOST     = "10.244.0.20"
-    TYPEORM_PORT     = "5432"
-    TYPEORM_USERNAME = "coldbolt"
-    TYPEORM_DATABASE = "jobsbolt"
-    RABBITMQ_URL     = "jobsbolt-rabbit-service"
-    # RABBITMQ_URL      = "10.1.0.57"
+    TYPEORM_TYPE      = "postgres"
+    TYPEORM_HOST      = "jobsbolt-postgres-service"
+    TYPEORM_PORT      = "5432"
+    TYPEORM_USERNAME  = "coldbolt"
+    TYPEORM_DATABASE  = "jobsbolt"
+    RABBITMQ_URL      = "jobsbolt-rabbit-service"
     GENERAL_TEST      = "false"
     FIND_JOB          = "false"
     TEST_BATCH        = "false"
     DISCORD_TEST      = "false"
     FULL_TEST         = "false"
     RABBITMQ_USERNAME = "guest"
+    SEEDER_NAME       = "admin"
+    SEEDER_EMAIL      = "test@email.com"
   }
 }
