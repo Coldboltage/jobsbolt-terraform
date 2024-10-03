@@ -27,7 +27,7 @@ resource "kubernetes_deployment" "jobsbolt_api_deployment" {
 
       spec {
         container {
-          image = "coldbolt/jobsbolt-api:dev-latest"
+          image = "coldbolt/jobsbolt-api:dev-test-latest"
           name  = "jobsbolt-api"
 
           image_pull_policy = "Always" # This forces Kubernetes to pull the latest image
@@ -230,6 +230,16 @@ resource "kubernetes_deployment" "jobsbolt_api_deployment" {
               secret_key_ref {
                 name = "jobsbolt-secrets"
                 key  = "SEEDER_PASSWORD"
+              }
+            }
+          }
+
+          env {
+            name = "SENTRY_DSN"
+            value_from {
+              secret_key_ref {
+                name = "jobsbolt-secrets"
+                key  = "SENTRY_DSN"
               }
             }
           }

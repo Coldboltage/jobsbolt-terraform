@@ -28,3 +28,7 @@ variable "SEEDER_PASSWORD" {
   sensitive = true
 }
 
+variable "SENTRY_DSN" {
+  type      = string
+  sensitive = true
+}

@@ -10,6 +10,7 @@ resource "kubernetes_secret" "jobsbolt_secrets" {
     DISCORD_KEY       = var.DISCORD_KEY       # Raw value
     RABBITMQ_PASSWORD = var.RABBITMQ_PASSWORD # Raw value
     SEEDER_PASSWORD   = var.SEEDER_PASSWORD   # Raw value
+    SENTRY_DSN        = var.SENTRY_DSN        # Raw value
   }
 
   type = "Opaque"

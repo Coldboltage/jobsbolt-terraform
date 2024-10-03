@@ -12,10 +12,10 @@ global:
 scrape_configs:
   - job_name: 'jobsbolt-api'
     static_configs:
-      - targets: ['localhost:3000']
+      - targets: ['jobsbolt-api-service:3000']
   - job_name: 'jobsbolt-prometheus'
     static_configs:
-      - targets: ['localhost:9090']
+      - targets: ['jobsbolt-prometheus-service:9090']
 EOF
   }
 }
