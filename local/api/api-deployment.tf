@@ -27,7 +27,7 @@ resource "kubernetes_deployment" "jobsbolt_api_deployment" {
 
       spec {
         container {
-          image = "coldbolt/jobsbolt-api:dev-test-latest"
+          image = "coldbolt/jobsbolt-api:local-latest"
           name  = "jobsbolt-api"
 
           image_pull_policy = "Always" # This forces Kubernetes to pull the latest image
