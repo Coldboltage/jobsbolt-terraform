@@ -22,3 +22,13 @@ variable "RABBITMQ_PASSWORD" {
   type      = string
   sensitive = true
 }
+
+variable "SEEDER_PASSWORD" {
+  type      = string
+  sensitive = true
+}
+
+variable "SENTRY_DSN" {
+  type      = string
+  sensitive = true
+}

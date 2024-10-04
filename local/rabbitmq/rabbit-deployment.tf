@@ -4,7 +4,7 @@ resource "kubernetes_deployment" "jobsbolt_rabbit_deployment" {
     labels = {
       app       = "jobsbolt"
       component = "rabbit"
-      env       = "local"
+      env       = "dev"
     }
   }
 

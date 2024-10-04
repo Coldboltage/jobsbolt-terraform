@@ -4,10 +4,9 @@ resource "kubernetes_deployment" "jobsbolt_api_deployment" {
     labels = {
       app       = "jobsbolt"
       component = "api"
-      env       = "local"
+      env       = "dev"
     }
   }
-
   spec {
     replicas = 1
 
@@ -28,7 +27,7 @@ resource "kubernetes_deployment" "jobsbolt_api_deployment" {
 
       spec {
         container {
-          image = "coldbolt/jobsboltapi:latest"
+          image = "coldbolt/jobsbolt-api:dev-test-latest"
           name  = "jobsbolt-api"
 
           image_pull_policy = "Always" # This forces Kubernetes to pull the latest image
@@ -156,6 +155,26 @@ resource "kubernetes_deployment" "jobsbolt_api_deployment" {
           }
 
           env {
+            name = "SEEDER_NAME"
+            value_from {
+              config_map_key_ref {
+                name = kubernetes_config_map.jobsbolt_api_config.metadata[0].name
+                key  = "SEEDER_NAME"
+              }
+            }
+          }
+
+          env {
+            name = "SEEDER_EMAIL"
+            value_from {
+              config_map_key_ref {
+                name = kubernetes_config_map.jobsbolt_api_config.metadata[0].name
+                key  = "SEEDER_EMAIL"
+              }
+            }
+          }
+
+          env {
             name = "TYPEORM_PASSWORD"
             value_from {
               secret_key_ref {
@@ -201,6 +220,26 @@ resource "kubernetes_deployment" "jobsbolt_api_deployment" {
               secret_key_ref {
                 name = "jobsbolt-secrets"
                 key  = "RABBITMQ_PASSWORD"
+              }
+            }
+          }
+
+          env {
+            name = "SEEDER_PASSWORD"
+            value_from {
+              secret_key_ref {
+                name = "jobsbolt-secrets"
+                key  = "SEEDER_PASSWORD"
+              }
+            }
+          }
+
+          env {
+            name = "SENTRY_DSN"
+            value_from {
+              secret_key_ref {
+                name = "jobsbolt-secrets"
+                key  = "SENTRY_DSN"
               }
             }
           }

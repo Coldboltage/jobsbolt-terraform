@@ -8,7 +8,7 @@ resource "kubernetes_config_map" "jobsbolt_config" {
     TYPEORM_HOST      = "jobsbolt-postgres"
     TYPEORM_PORT      = "5432"
     TYPEORM_USERNAME  = "coldbolt"
-    TYPEORM_DATABASE  = "jobsbolt"
+    TYPEORM_DATABASE  = "jobsbolt-local-dev"
     RABBITMQ_URL      = "jobsbolt-rabbit"
     GENERAL_TEST      = "false"
     FIND_JOB          = "false"
@@ -18,7 +18,3 @@ resource "kubernetes_config_map" "jobsbolt_config" {
     RABBITMQ_USERNAME = "guest"
   }
 }
-
-# output "jobsbolt_config_name" {
-#   value = kubernetes_config_map.jobsbolt-config.metadata[0].name
-# }

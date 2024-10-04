@@ -6,6 +6,11 @@ provider "kubernetes" {
 # Call the API deployment and service
 module "api" {
   source = "./api"
+
+  depends_on = [
+    module.grafana.jobsbolt_grafana_deployment,
+    module.prometheus.jobsbolt_prometheus_deployment
+  ]
 }
 
 # Call the Postgres deployment and service
@@ -18,66 +23,11 @@ module "rabbitmq" {
   source = "./rabbitmq"
 }
 
+module "grafana" {
+  source = "./grafana"
+}
 
-# provider "kubernetes" {
-#   config_path = "~/.kube/config" # Adjust as necessary
-# }
-
-# # Simple Nginx Deployment
-# resource "kubernetes_deployment" "nginx" {
-#   metadata {
-#     name      = "nginx"
-#     namespace = "default"
-#   }
-
-#   spec {
-#     replicas = 1
-
-#     selector {
-#       match_labels = {
-#         app = "nginx"
-#       }
-#     }
-
-#     template {
-#       metadata {
-#         labels = {
-#           app = "nginx"
-#         }
-#       }
-
-#       spec {
-#         container {
-#           name  = "nginx"
-#           image = "nginx:latest"
-
-#           port {
-#             container_port = 80
-#           }
-#         }
-#       }
-#     }
-#   }
-# }
-
-# # Simple Nginx Service
-# resource "kubernetes_service" "nginx" {
-#   metadata {
-#     name      = "nginx"
-#     namespace = "default"
-#   }
-
-#   spec {
-#     selector = {
-#       app = "nginx"
-#     }
-
-#     port {
-#       port        = 80
-#       target_port = 80
-#     }
-
-#     type = "ClusterIP"
-#   }
-# }
+module "prometheus" {
+  source = "./prometheus"
+}
 

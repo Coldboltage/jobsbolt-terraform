@@ -4,7 +4,7 @@ resource "kubernetes_deployment" "jobsbolt_postgres_deployment" {
     labels = {
       app       = "jobsbolt"
       component = "postgres"
-      env       = "local"
+      env       = "dev"
     }
   }
 
@@ -90,6 +90,8 @@ resource "kubernetes_deployment" "jobsbolt_postgres_deployment" {
             claim_name = kubernetes_persistent_volume_claim.jobsbolt_postgres_pvc.metadata[0].name
           }
         }
+
+        # Mount the volume inside the container
       }
     }
   }
